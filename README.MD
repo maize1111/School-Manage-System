@@ -1,4 +1,6 @@
 School Management System by python
-Class: School
-       Teacher
-       Student
+This system include 4 classes: 
+class school
+class teacher
+class student
+class course
