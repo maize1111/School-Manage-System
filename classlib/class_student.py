@@ -1,3 +1,4 @@
+# from classlib import *
 import classlib.class_school
 import classlib.class_course
 

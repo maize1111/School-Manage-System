@@ -1,6 +1,7 @@
-from classlib.class_teacher import *
-from classlib.class_student import *
-from classlib.class_course import *
+# from classlib import *
+from classlib.class_teacher import teacher
+from classlib.class_student import student
+from classlib.class_course import course
 
 
 class school(object):
@@ -12,6 +13,13 @@ class school(object):
         self.__teacher_list = []
         self.__student_list = []
         self.__course_list = []
+        self.__id = ''
+
+    def init_school(self, name, address):
+        self.__name = name
+        self.__address = address
+        school.school_list.append(name)
+        self.__id = school.school_list.index(name)
 
     # Register a new school
     def regSchool(self):
@@ -27,17 +35,29 @@ class school(object):
     function ADD objects...
     '''
 
-    def add_course(self, course_name, teacher_name):
-        new_course = course(course_name,teacher_name)
+    # def add_course(self, course_name, teacher_name):
+    #     new_course = course(course_name, teacher_name)
+    #     self.__course_list.append(new_course)
+    #     course.course_list.append(course_name)
+    #     new_course.teacherInfo.setName(teacher_name)
+    #     print("Add course: " + course_name + '\n')
+    def add_course(self):
+        course_name = input("Input course name: ")
+        teacher_name = input("Input teacher name: ")
+        new_course = course(course_name, teacher_name)
         self.__course_list.append(new_course)
         course.course_list.append(course_name)
         new_course.teacherInfo.setName(teacher_name)
-        print("Add course: " + course_name + '\n')
+        print("Add course %s successful!" % course_name)
 
-    def add_teacher(self, teacher_name):
-        new_teacher = teacher(teacher_name)
+    # def add_teacher(self, teacher_name):
+    #     new_teacher = teacher(teacher_name)
+    #     self.__teacher_list.append(new_teacher)
+    #     print("Add teacher: " + teacher_name + '\n')
+    def add_teacher(self):
+        new_teacher = teacher(input("Input teacher's name: "))
         self.__teacher_list.append(new_teacher)
-        print("Add teacher: " + teacher_name + '\n')
+        print("Add teacher %s successful!" % new_teacher.getName())
 
     # add student by input his/her information
     def add_student(self):
@@ -88,4 +108,3 @@ class school(object):
     '''
     function SET...
     '''
-
