@@ -1,4 +1,6 @@
 # from classlib import *
+from pymysql import *
+from mysqldb.mysql_connect import mysql_connect
 from classlib.class_teacher import teacher
 from classlib.class_student import student
 from classlib.class_course import course
@@ -31,10 +33,29 @@ class school(object):
         self.__address = school_address
         print("------Registered Successful------\n")
 
+        print("------Store to MySQL------")
+        #Cannot commit ///BUG///
+        db1 = mysql_connect()
+        # db1.auto_connection()
+        db2=mysql_connect()
+        db2.auto_connection()
+        # count the number of registered school
+        sql2="SELECT count(*)from school"
+        db2.cursor.execute(sql2)
+        res=db2.cursor.fetchone()[0]
+        db2.close()
+        # print(res)
+        # id is not right
+        sql1 = "INSERT INTO school(name, address, id) VALUES ('%s','%s',%s)" % (school_name, school_address, res)
+        db1.exc(sql1)
+        # print(res)
+        print('------Insert Successful!------\n')
+
     '''
     function ADD objects...
     '''
 
+    # add course with its name and teacher'name
     # def add_course(self, course_name, teacher_name):
     #     new_course = course(course_name, teacher_name)
     #     self.__course_list.append(new_course)

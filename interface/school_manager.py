@@ -1,4 +1,5 @@
 from classlib import *
+from mysqldb import *
 
 def getSchoolInfo(schoolName):
     school.get_school_name(schoolName)
